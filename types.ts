@@ -17,3 +17,8 @@ export interface LLMRequest {
   stream: boolean;
   format?: string;
 }
+
+export interface IndexState {
+  loading: boolean;
+  response: string;
+}
