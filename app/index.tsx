@@ -1,4 +1,5 @@
 import useLLM from "@/hooks/useLLM";
+import { Color } from "@/utils/style";
 import { useCallback, useState } from "react";
 import {
   ScrollView,
@@ -40,7 +41,7 @@ export default function Index() {
       <TextInput
         style={styles.input}
         placeholder="Ask something..."
-        placeholderTextColor="#525252"
+        placeholderTextColor={Color.foregroundSecondary}
         value={prompt}
         onChangeText={setPrompt}
       />
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   buttonLabel: {
-    color: "#fafafa",
+    color: Color.foregroundPrimary,
     fontSize: 16,
     fontWeight: "600",
   },
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     borderColor: "#d4d4d4",
     borderWidth: 1,
     borderRadius: 8,
+    color: Color.foregroundPrimary,
     fontSize: 16,
     fontWeight: "500",
     paddingHorizontal: 16,
@@ -80,6 +82,7 @@ const styles = StyleSheet.create({
     width: 256,
   },
   response: {
+    color: Color.foregroundPrimary,
     fontSize: 16,
     fontWeight: "500",
     paddingHorizontal: 64,
