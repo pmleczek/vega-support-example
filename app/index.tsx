@@ -1,33 +1,21 @@
 import { BottomBar } from "@/components";
-import type { IndexState } from "@/types";
+import useChat from "@/hooks/useChat";
 import { Color } from "@/utils/style";
-import { useCallback, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
-  const [state, setState] = useState<IndexState>({
-    loading: false,
-    response: "",
-  });
-
-  const handleUpdateState = useCallback((update: Partial<IndexState>) => {
-    setState((prev) => ({ ...prev, ...update }));
-  }, []);
+  const { messages } = useChat();
 
   return (
     <View style={styles.container}>
-      <View style={{ flex: 1 }}>
-        {state.loading || !state.response ? (
-          <Text style={styles.response}>
-            {state.loading ? "AI is thinking..." : "Ask something!"}
+      <ScrollView style={styles.list}>
+        {messages.map((message) => (
+          <Text key={message.id} style={styles.response}>
+            {message.content}
           </Text>
-        ) : (
-          <ScrollView>
-            <Text style={styles.response}>{state.response}</Text>
-          </ScrollView>
-        )}
-      </View>
-      <BottomBar setIndexState={handleUpdateState} />
+        ))}
+      </ScrollView>
+      <BottomBar />
     </View>
   );
 }
@@ -44,6 +32,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 16,
+  },
+  list: {
+    flex: 1,
   },
   response: {
     color: Color.foregroundPrimary,
