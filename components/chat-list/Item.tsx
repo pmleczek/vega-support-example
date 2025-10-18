@@ -1,5 +1,6 @@
 import { Color } from "@/utils/style";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import AssistantMessage from "../assistant-message";
 import { ItemProps } from "./types";
 import UserMessage from "./UserMessage";
 
@@ -14,7 +15,7 @@ const Item = ({ message }: ItemProps) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{message.content}</Text>
+      <AssistantMessage message={message.content} />
     </View>
   );
 };
