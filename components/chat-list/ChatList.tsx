@@ -2,6 +2,7 @@ import useChat from "@/hooks/useChat";
 import { LegendList } from "@legendapp/list";
 import { StyleSheet } from "react-native";
 import Item from "./Item";
+import Separator from "./Separator";
 
 const ChatList = () => {
   const { messages } = useChat();
@@ -13,6 +14,9 @@ const ChatList = () => {
       keyExtractor={(item) => item.id}
       style={styles.list}
       recycleItems
+      ItemSeparatorComponent={Separator}
+      maintainScrollAtEnd
+      maintainScrollAtEndThreshold={0.1}
     />
   );
 };
