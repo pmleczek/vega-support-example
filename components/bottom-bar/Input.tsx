@@ -10,6 +10,8 @@ const Input = ({ onChangeText, value }: InputProps) => {
       placeholderTextColor={Color.foregroundSecondary}
       value={value}
       onChangeText={onChangeText}
+      multiline
+      numberOfLines={1}
     />
   );
 };
