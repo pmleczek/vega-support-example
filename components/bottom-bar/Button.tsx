@@ -1,11 +1,12 @@
 import { Color } from "@/utils/style";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { ArrowUpIcon } from "../icons";
 import type { ButtonProps } from "./types";
 
-const Button = ({ onPress }: ButtonProps) => {
+const Button = ({ onPress, style = {} }: ButtonProps) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text style={styles.label}>Send</Text>
+    <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
+      <ArrowUpIcon color={Color.foregroundPrimary} />
     </TouchableOpacity>
   );
 };
@@ -14,14 +15,13 @@ export default Button;
 
 const styles = StyleSheet.create({
   container: {
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: Color.backgroundPrimary,
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-  },
-  label: {
-    color: Color.foregroundPrimary,
-    fontSize: 16,
-    fontWeight: "600",
+    borderColor: Color.borderSecondary,
+    borderWidth: 1,
+    borderRadius: 9999,
+    height: 56,
+    width: 56,
   },
 });

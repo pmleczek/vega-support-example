@@ -32,8 +32,9 @@ const BottomBar = () => {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <View style={styles.inputRow}>
-        <Input onChangeText={setPrompt} value={prompt} />
-        <Button onPress={handlePress} />
+        <Input onChangeText={setPrompt} value={prompt}>
+          <Button onPress={handlePress} style={styles.button} />
+        </Input>
       </View>
       <MistakesNotice />
     </View>
@@ -43,6 +44,10 @@ const BottomBar = () => {
 export default BottomBar;
 
 const styles = StyleSheet.create({
+  button: {
+    position: "absolute",
+    right: 0,
+  },
   container: {
     paddingHorizontal: 24,
     width: "100%",
