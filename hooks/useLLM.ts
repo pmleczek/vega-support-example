@@ -1,10 +1,12 @@
-import { randomUUID } from "expo-crypto";
+import { fetch } from "expo/fetch";
 import { useCallback } from "react";
-import type { LLMRequest, Message, MessageInput } from "../types";
+import type { LLMRequest, MessageInput } from "../types";
+
+type ReturnType = ReadableStreamReader<Uint8Array<ArrayBuffer>> | undefined;
 
 const useLLM = () => {
   const getLLMResponse = useCallback(
-    async (message: string): Promise<Message> => {
+    async (message: string): Promise<ReturnType> => {
       const input: MessageInput = {
         role: "user",
         content: message,
@@ -13,20 +15,16 @@ const useLLM = () => {
       const body: LLMRequest = {
         model: "qwen3:4b",
         messages: [input],
-        stream: false,
+        stream: true,
       };
 
       const response = await fetch("http://localhost:11434/api/chat", {
         method: "POST",
         body: JSON.stringify(body),
       });
-      const llmResponse = await response.json();
+      const reader = response.body?.getReader();
 
-      return {
-        role: "assistant",
-        content: llmResponse.message.content,
-        id: randomUUID(),
-      };
+      return reader;
     },
     []
   );

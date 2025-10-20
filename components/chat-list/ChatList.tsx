@@ -1,3 +1,4 @@
+import useAppState from "@/hooks/useAppState";
 import useChat from "@/hooks/useChat";
 import { LegendList } from "@legendapp/list";
 import { StyleSheet } from "react-native";
@@ -5,6 +6,7 @@ import Item from "./Item";
 import Separator from "./Separator";
 
 const ChatList = () => {
+  const { loading } = useAppState();
   const { messages } = useChat();
 
   return (
@@ -15,6 +17,7 @@ const ChatList = () => {
       style={styles.list}
       recycleItems
       ItemSeparatorComponent={Separator}
+      ListFooterComponent={!loading ? Separator.WithLoader : Separator}
       maintainScrollAtEnd
       maintainScrollAtEndThreshold={0.1}
     />

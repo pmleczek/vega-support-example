@@ -16,7 +16,30 @@ const useChat = () => {
     [setAtom]
   );
 
-  return { messages: atomValue.messages, pushMessage };
+  const pushChunksToLastMessage = useCallback(
+    (chunks: string) => {
+      setAtom((prev) => {
+        const lastMessage = prev.messages.at(-1);
+        if (!lastMessage || !chunks) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          messages: [
+            ...prev.messages.slice(0, -1),
+            {
+              ...lastMessage,
+              content: lastMessage.content + chunks,
+            },
+          ],
+        };
+      });
+    },
+    [setAtom]
+  );
+
+  return { messages: atomValue.messages, pushChunksToLastMessage, pushMessage };
 };
 
 export default useChat;

@@ -1,7 +1,4 @@
-import useChat from "@/hooks/useChat";
-import useLLM from "@/hooks/useLLM";
-import type { Message } from "@/types";
-import { randomUUID } from "expo-crypto";
+import useStreamLLMResponse from "@/hooks/useStreamLLMResponse";
 import { useCallback, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -11,23 +8,13 @@ import MistakesNotice from "./MistakesNotice";
 
 const BottomBar = () => {
   const [prompt, setPrompt] = useState<string>("");
-  const { pushMessage } = useChat();
-  const getLLMResponse = useLLM();
+  const streamResponse = useStreamLLMResponse();
   const insets = useSafeAreaInsets();
 
   const handlePress = useCallback(async () => {
-    const userMessage: Message = {
-      id: randomUUID(),
-      role: "user",
-      content: prompt,
-    };
-    pushMessage(userMessage);
-
-    const promptCopy = prompt;
+    streamResponse(prompt);
     setPrompt("");
-    const llmResponse = await getLLMResponse(promptCopy);
-    pushMessage(llmResponse);
-  }, [getLLMResponse, prompt, pushMessage]);
+  }, [prompt, streamResponse]);
 
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
