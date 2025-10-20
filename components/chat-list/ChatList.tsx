@@ -3,11 +3,16 @@ import useChat from "@/hooks/useChat";
 import { LegendList } from "@legendapp/list";
 import { StyleSheet } from "react-native";
 import Item from "./Item";
+import Placeholder from "./Placeholder";
 import Separator from "./Separator";
 
 const ChatList = () => {
   const { loading } = useAppState();
   const { messages } = useChat();
+
+  if (!messages.length) {
+    return <Placeholder />;
+  }
 
   return (
     <LegendList

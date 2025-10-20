@@ -9,7 +9,9 @@ const Input = ({ children, disabled, onChangeText, value }: InputProps) => {
         editable={!disabled}
         style={styles.input}
         placeholder="Ask something..."
-        placeholderTextColor={!disabled ? Color.foregroundSecondary : Color.borderSecondary}
+        placeholderTextColor={
+          !disabled ? Color.foregroundSecondary : Color.borderSecondary
+        }
         value={value}
         onChangeText={onChangeText}
         multiline
@@ -39,7 +41,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: "500",
     height: 56,
-    paddingHorizontal: 24,
+    paddingLeft: 24,
+    paddingRight: 56,
     paddingVertical: 18,
   },
 });
