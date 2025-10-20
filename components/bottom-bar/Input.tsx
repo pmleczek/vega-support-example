@@ -2,13 +2,14 @@ import { Color } from "@/utils/style";
 import { StyleSheet, TextInput, View } from "react-native";
 import type { InputProps } from "./types";
 
-const Input = ({ children, onChangeText, value }: InputProps) => {
+const Input = ({ children, disabled, onChangeText, value }: InputProps) => {
   return (
     <View style={styles.container}>
       <TextInput
+        editable={!disabled}
         style={styles.input}
         placeholder="Ask something..."
-        placeholderTextColor={Color.foregroundSecondary}
+        placeholderTextColor={!disabled ? Color.foregroundSecondary : Color.borderSecondary}
         value={value}
         onChangeText={onChangeText}
         multiline
@@ -24,6 +25,9 @@ export default Input;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  disabled: {
+    backgroundColor: Color.border,
   },
   input: {
     backgroundColor: Color.backgroundSecondary,

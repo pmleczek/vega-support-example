@@ -15,9 +15,21 @@ const useAppState = () => {
     [setAtom]
   );
 
+  const setStreaming = useCallback(
+    (streaming: boolean) => {
+      setAtom((prev) => ({
+        ...prev,
+        streaming,
+      }));
+    },
+    [setAtom]
+  );
+
   return {
     loading: atom.loading,
     setLoading,
+    streaming: atom.streaming,
+    setStreaming,
   };
 };
 

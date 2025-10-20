@@ -1,15 +1,15 @@
 import useChat from "@/hooks/useChat";
 import { randomUUID } from "expo-crypto";
 import { useCallback, useEffect, useRef } from "react";
-import useLLM from "./useLLM";
 import useAppState from "./useAppState";
+import useLLM from "./useLLM";
 
 const useStreamLLMResponse = () => {
   const updateRef = useRef<string>("");
   const timeoutRef = useRef<number>(null);
   const finshedLoading = useRef<boolean>(false);
 
-  const { setLoading } = useAppState();
+  const { setLoading, setStreaming } = useAppState();
   const getResponseReader = useLLM();
   const { pushChunksToLastMessage, pushMessage } = useChat();
 
@@ -23,18 +23,23 @@ const useStreamLLMResponse = () => {
   const streamThrottledUpdates = useCallback(() => {
     const chunks = updateRef.current;
     updateRef.current = "";
-    pushChunksToLastMessage(chunks);
+    pushChunksToLastMessage(chunks.replace("\uFFFF", ""));
 
-    if (updateRef.current?.endsWith("\uFFFF") && timeoutRef.current) {
-      clearInterval(timeoutRef.current);
-      timeoutRef.current = null;
+    if (chunks.endsWith("\uFFFF")) {
+      if (timeoutRef.current) {
+        clearInterval(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+      setStreaming(false);
     }
-  }, [pushChunksToLastMessage]);
+  }, [pushChunksToLastMessage, setStreaming]);
 
   const streamLLMResponse = useCallback(
     async (prompt: string) => {
       setLoading(true);
+      setStreaming(true);
       finshedLoading.current = false;
+
       pushMessage({
         id: randomUUID(),
         role: "user",
@@ -67,9 +72,12 @@ const useStreamLLMResponse = () => {
             if ("message" in chunk) {
               const message = chunk["message"];
               if (!("content" in message) || message["content"] === "") {
+                if ("done" in chunk && chunk["done"]) {
+                  updateRef.current += "\uFFFF";
+                }
                 continue;
               }
-              
+
               if (!finshedLoading.current) {
                 finshedLoading.current = true;
                 setLoading(false);
@@ -77,17 +85,19 @@ const useStreamLLMResponse = () => {
 
               updateRef.current += message["content"];
             }
-
-            if ("done" in chunk && chunk["done"]) {
-              updateRef.current += "\uFFFF";
-            }
           }
         }
       } finally {
         reader.releaseLock();
       }
     },
-    [getResponseReader, pushMessage, setLoading, streamThrottledUpdates]
+    [
+      getResponseReader,
+      pushMessage,
+      setLoading,
+      setStreaming,
+      streamThrottledUpdates,
+    ]
   );
 
   return streamLLMResponse;

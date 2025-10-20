@@ -5,11 +5,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Button from "./Button";
 import Input from "./Input";
 import MistakesNotice from "./MistakesNotice";
+import useAppState from "@/hooks/useAppState";
 
 const BottomBar = () => {
   const [prompt, setPrompt] = useState<string>("");
   const streamResponse = useStreamLLMResponse();
   const insets = useSafeAreaInsets();
+  const { streaming } = useAppState();
 
   const handlePress = useCallback(async () => {
     streamResponse(prompt);
@@ -19,8 +21,8 @@ const BottomBar = () => {
   return (
     <View style={[styles.container, { paddingBottom: insets.bottom }]}>
       <View style={styles.inputRow}>
-        <Input onChangeText={setPrompt} value={prompt}>
-          <Button onPress={handlePress} style={styles.button} />
+        <Input disabled={streaming} onChangeText={setPrompt} value={prompt}>
+          <Button disabled={streaming} onPress={handlePress} style={styles.button} />
         </Input>
       </View>
       <MistakesNotice />
