@@ -1,7 +1,7 @@
 import chatAtom from "@/atoms/chatAtom";
 import { Message } from "@/types";
 import { useAtom } from "jotai";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 
 const useChat = () => {
   const [atomValue, setAtom] = useAtom(chatAtom);
@@ -39,7 +39,11 @@ const useChat = () => {
     [setAtom]
   );
 
-  return { messages: atomValue.messages, pushChunksToLastMessage, pushMessage };
+  const messages = useMemo(() => {
+    return atomValue.messages.filter((message) => message.content);
+  }, [atomValue]);
+
+  return { messages, pushChunksToLastMessage, pushMessage };
 };
 
 export default useChat;

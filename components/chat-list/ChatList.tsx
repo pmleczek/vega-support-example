@@ -17,7 +17,7 @@ const ChatList = () => {
       style={styles.list}
       recycleItems
       ItemSeparatorComponent={Separator}
-      ListFooterComponent={!loading ? Separator.WithLoader : Separator}
+      ListFooterComponent={loading ? Separator.WithLoader : Separator}
       maintainScrollAtEnd
       maintainScrollAtEndThreshold={0.1}
     />

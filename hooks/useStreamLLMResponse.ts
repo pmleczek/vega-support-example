@@ -7,6 +7,7 @@ import useAppState from "./useAppState";
 const useStreamLLMResponse = () => {
   const updateRef = useRef<string>("");
   const timeoutRef = useRef<number>(null);
+  const finshedLoading = useRef<boolean>(false);
 
   const { setLoading } = useAppState();
   const getResponseReader = useLLM();
@@ -33,6 +34,7 @@ const useStreamLLMResponse = () => {
   const streamLLMResponse = useCallback(
     async (prompt: string) => {
       setLoading(true);
+      finshedLoading.current = false;
       pushMessage({
         id: randomUUID(),
         role: "user",
@@ -54,7 +56,6 @@ const useStreamLLMResponse = () => {
 
       let done = false;
       const textDecoder = new TextDecoder();
-      setLoading(false);
 
       try {
         while (!done) {
@@ -67,6 +68,11 @@ const useStreamLLMResponse = () => {
               const message = chunk["message"];
               if (!("content" in message) || message["content"] === "") {
                 continue;
+              }
+              
+              if (!finshedLoading.current) {
+                finshedLoading.current = true;
+                setLoading(false);
               }
 
               updateRef.current += message["content"];

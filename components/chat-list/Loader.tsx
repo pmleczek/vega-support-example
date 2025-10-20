@@ -1,53 +1,47 @@
 import { Color } from "@/utils/style";
-import { useEffect } from "react";
-import { StyleSheet } from "react-native";
-import Animated, {
-  cancelAnimation,
-  SlideInDown,
-  useSharedValue,
-  withDelay,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
-
-const Constants = {
-  CIRCLE_SIZE: 10,
-  DURATION: 350,
-} as const;
-
-const pulse = withSequence(
-  withTiming(1.25, { duration: Constants.DURATION }),
-  withTiming(1, { duration: Constants.DURATION }),
-  withTiming(1, { duration: 2 * Constants.DURATION })
-);
+import MaskedView from "@react-native-masked-view/masked-view";
+import { LinearGradient } from "expo-linear-gradient";
+import { useEffect, useRef, useState } from "react";
+import { StyleSheet, Text } from "react-native";
+import Animated, { SlideInDown } from "react-native-reanimated";
 
 const Loader = () => {
-  const scale1 = useSharedValue(1);
-  const scale2 = useSharedValue(1);
-  const scale3 = useSharedValue(1);
+  const intervalRef = useRef<number>(null);
+  const [endX, setEndX] = useState(0);
 
   useEffect(() => {
-    scale1.value = withRepeat(pulse, -1);
-    scale2.value = withDelay(Constants.DURATION + 100, withRepeat(pulse, -1));
-    scale3.value = withDelay(
-      Constants.DURATION * 2 + 100,
-      withRepeat(pulse, -1)
-    );
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
+    intervalRef.current = setInterval(() => {
+      setEndX((prev) => Math.max(0.2, (prev + 0.015) % 1.5));
+    }, 32);
 
     return () => {
-      cancelAnimation(scale1);
-      cancelAnimation(scale2);
-      cancelAnimation(scale3);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
-  });
+  }, []);
 
   return (
     <Animated.View
-      entering={SlideInDown.duration(300)}
+      entering={SlideInDown.duration(300).delay(500)}
       style={styles.container}
     >
-      <Animated.Text style={[styles.text]}>AI is thinking...</Animated.Text>
+      <MaskedView
+        maskElement={<Text style={styles.text}>AI is thinking...</Text>}
+      >
+        <LinearGradient
+          start={{ x: 0, y: 0.5 }}
+          end={{ x: endX, y: 0.5 }}
+          colors={[Color.foregroundPrimary, Color.border]}
+          style={{ width: 128, height: 20 }}
+        />
+      </MaskedView>
     </Animated.View>
   );
 };
@@ -61,6 +55,7 @@ const styles = StyleSheet.create({
   text: {
     color: Color.foregroundSecondary,
     fontSize: 16,
-    fontWeight: '500',
+    fontWeight: "500",
+    lineHeight: 20,
   },
 });
