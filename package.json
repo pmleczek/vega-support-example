@@ -1,7 +1,0 @@
-{
-  "name": "@llm-chat/monorepo",
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
-}

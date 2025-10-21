@@ -2,7 +2,9 @@
   "name": "@amazon-devices/llmchatvega",
   "version": "0.0.1",
   "private": true,
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rm -rf node_modules buildinfo.json dist build",
     "start": "react-native start",
@@ -15,17 +17,27 @@
     "build:app": "npm-run-all build:release",
     "build": "npm-run-all build:release",
     "release": "npm-run-all lint test build:app"
-    },
+  },
   "dependencies": {
+    "@amazon-devices/keplerscript-turbomodule-api": "^1.0.0",
     "@amazon-devices/react-native-kepler": "^2.0.0",
+    "@llm-chat/chat": "file:../chat",
+    "@react-native-masked-view/masked-view": "npm:@amazon-devices/react-native-masked-view__masked-view@^2.0.0",
+    "expo": "^54.0.16",
+    "expo-crypto": "npm:@amazon-devices/expo-crypto@^2.0.0",
+    "expo-linear-gradient": "npm:@amazon-devices/expo-linear-gradient@^2.0.0",
     "react": "18.2.0",
-    "react-native": "0.72.0"
+    "react-native": "0.72.0",
+    "react-native-kepler": "npm:@amazon-devices/react-native-kepler@^2.0.0",
+    "react-native-reanimated": "npm:@amazon-devices/react-native-reanimated@^2.0.0",
+    "react-native-safe-area-context": "npm:@amazon-devices/react-native-safe-area-context@^2.0.0",
+    "react-native-svg": "npm:@amazon-devices/react-native-svg@^2.0.0"
   },
   "devDependencies": {
     "@amazon-devices/kepler-cli-platform": "^0",
+    "@react-native-community/cli": "11.3.2",
     "@react-native/eslint-config": "0.72.2",
     "@react-native/metro-config": "^0.72.6",
-    "@react-native-community/cli": "11.3.2",
     "@testing-library/react-native": "^7.2.0",
     "@tsconfig/react-native": "^3.0.2",
     "@types/jest": "^28.0.0",
@@ -46,6 +58,8 @@
   "kepler": {
     "projectType": "application",
     "appName": "llmchatvega",
-    "targets": ["tv"]
+    "targets": [
+      "tv"
+    ]
   }
 }

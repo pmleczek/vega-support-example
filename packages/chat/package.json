@@ -4,21 +4,23 @@
   "module": "./src/index.ts",
   "type": "module",
   "dependencies": {
-    "jotai": "^2.15.0"
+    "@legendapp/list": "^2.0.13",
+    "jotai": "^2.15.0",
+    "react-native-markdown-display": "^7.0.2"
   },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "@legendapp/list": "^2.0.13",
     "@react-native-masked-view/masked-view": "*",
-    "typescript": "^5.0.0",
     "expo": "*",
-    "react-native-svg": "*",
-    "react-native-reanimated": "*",
-    "react-native": "*",
-    "react": "*",
     "expo-crypto": "*",
-    "expo-linear-gradient": "*"
+    "expo-linear-gradient": "*",
+    "react": "*",
+    "react-native": "*",
+    "react-native-reanimated": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-svg": "*",
+    "typescript": "^5.0.0"
   }
 }
