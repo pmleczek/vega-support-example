@@ -1,7 +1,7 @@
-import { Line, Polyline, Svg } from "react-native-svg";
+import Svg, { Path } from "react-native-svg";
 import type { IconProps } from "./types";
 
-const ArrowUpIcon = ({ color }: IconProps) => {
+const LoaderIcon = ({ color }: IconProps) => {
   return (
     <Svg
       width="24"
@@ -12,12 +12,10 @@ const ArrowUpIcon = ({ color }: IconProps) => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="feather feather-arrow-up"
     >
-      <Line x1="12" y1="19" x2="12" y2="5" />
-      <Polyline points="5 12 12 5 19 12" />
+      <Path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </Svg>
   );
 };
 
-export default ArrowUpIcon;
+export default LoaderIcon;

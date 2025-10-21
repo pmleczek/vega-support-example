@@ -1,7 +1,7 @@
-import { Color } from "@/utils/style";
+import { Color } from "../../utils/style";
 import { StyleSheet, View } from "react-native";
 import AssistantMessage from "../assistant-message";
-import { ItemProps } from "./types";
+import type { ItemProps } from "./types";
 import UserMessage from "./UserMessage";
 
 const Item = ({ message }: ItemProps) => {

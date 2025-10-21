@@ -1,5 +1,5 @@
 import { atom } from "jotai";
-import { ChatAtomType } from "./types";
+import type { ChatAtomType } from "./types";
 
 const chatAtom = atom<ChatAtomType>({
   messages: [],

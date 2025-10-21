@@ -1,4 +1,4 @@
-import appStateAtom from "@/atoms/appStateAtom";
+import appStateAtom from "../atoms/appStateAtom";
 import { useAtom } from "jotai";
 import { useCallback } from "react";
 

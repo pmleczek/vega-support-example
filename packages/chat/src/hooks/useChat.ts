@@ -1,5 +1,5 @@
-import chatAtom from "@/atoms/chatAtom";
-import { Message } from "@/types";
+import chatAtom from "../atoms/chatAtom";
+import type { Message } from "../types";
 import { useAtom } from "jotai";
 import { useCallback, useMemo } from "react";
 

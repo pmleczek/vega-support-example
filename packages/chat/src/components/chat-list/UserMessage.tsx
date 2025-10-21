@@ -1,7 +1,7 @@
-import { Color } from "@/utils/style";
+import { Color } from "../../utils/style";
 import { StyleSheet } from "react-native";
 import Animated, { SlideInDown } from "react-native-reanimated";
-import { UserMessageProps } from "./types";
+import type { UserMessageProps } from "./types";
 
 const UserMessage = ({ message }: UserMessageProps) => {
   return (

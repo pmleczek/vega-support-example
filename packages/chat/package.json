@@ -1,11 +1,24 @@
 {
   "name": "@llm-chat/chat",
-  "module": "index.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
   "type": "module",
+  "dependencies": {
+    "jotai": "^2.15.0"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "@legendapp/list": "^2.0.13",
+    "@react-native-masked-view/masked-view": "*",
+    "typescript": "^5.0.0",
+    "expo": "*",
+    "react-native-svg": "*",
+    "react-native-reanimated": "*",
+    "react-native": "*",
+    "react": "*",
+    "expo-crypto": "*",
+    "expo-linear-gradient": "*"
   }
 }

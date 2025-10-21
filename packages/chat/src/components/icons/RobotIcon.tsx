@@ -12,7 +12,6 @@ const RobotIcon = ({ color, size = 24 }: IconProps) => {
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="lucide lucide-bot-message-square-icon lucide-bot-message-square"
     >
       <Path d="M12 6V2H8" />
       <Path d="M15 11v2" />

@@ -1,4 +1,4 @@
-import { Color } from "@/utils/style";
+import { Color } from "../../utils/style";
 import { useEffect } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import Animated, {

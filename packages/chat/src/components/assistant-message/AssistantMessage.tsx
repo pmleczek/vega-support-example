@@ -1,6 +1,6 @@
 import Markdown from "react-native-markdown-display";
 import markdownStyles from "./style";
-import { AssistantMessageProps } from "./types";
+import type { AssistantMessageProps } from "./types";
 
 const AssistantMessage = ({ message }: AssistantMessageProps) => {
   return <Markdown style={markdownStyles}>{message}</Markdown>;

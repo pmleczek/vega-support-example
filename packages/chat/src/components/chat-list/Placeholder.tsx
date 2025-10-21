@@ -1,4 +1,4 @@
-import { Color } from "@/utils/style";
+import { Color } from "../../utils/style";
 import { StyleSheet, View } from "react-native";
 import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 import { RobotIcon } from "../icons";

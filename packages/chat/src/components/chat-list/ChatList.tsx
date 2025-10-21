@@ -1,5 +1,5 @@
-import useAppState from "@/hooks/useAppState";
-import useChat from "@/hooks/useChat";
+import useAppState from "../../hooks/useAppState";
+import useChat from "../../hooks/useChat";
 import { LegendList } from "@legendapp/list";
 import { StyleSheet } from "react-native";
 import Item from "./Item";

@@ -1,11 +1,11 @@
-import useStreamLLMResponse from "@/hooks/useStreamLLMResponse";
+import useStreamLLMResponse from "../../hooks/useStreamLLMResponse";
 import { useCallback, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Button from "./Button";
 import Input from "./Input";
 import MistakesNotice from "./MistakesNotice";
-import useAppState from "@/hooks/useAppState";
+import useAppState from "../../hooks/useAppState";
 
 const BottomBar = () => {
   const [prompt, setPrompt] = useState<string>("");

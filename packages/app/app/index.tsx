@@ -1,4 +1,4 @@
-import { BottomBar, ChatList } from "@/components";
+import { BottomBar, ChatList } from "@llm-chat/chat";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 

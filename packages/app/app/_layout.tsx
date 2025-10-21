@@ -1,4 +1,4 @@
-import { Color } from "@/utils/style";
+import { Color } from "@llm-chat/chat";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { setBackgroundColorAsync } from "expo-system-ui";

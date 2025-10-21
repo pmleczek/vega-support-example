@@ -1,4 +1,4 @@
-import { Color } from "@/utils/style";
+import { Color } from "../../utils/style";
 import { StyleSheet, Text } from "react-native";
 
 const MistakesNotice = () => (

@@ -1,4 +1,4 @@
-import { Color } from "@/utils/style";
+import { Color } from "../../utils/style";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
@@ -6,7 +6,7 @@ import { StyleSheet, Text } from "react-native";
 import Animated, { SlideInDown } from "react-native-reanimated";
 
 const Loader = () => {
-  const intervalRef = useRef<number>(null);
+  const intervalRef = useRef<number | NodeJS.Timeout>(null);
   const [endX, setEndX] = useState(0);
 
   useEffect(() => {

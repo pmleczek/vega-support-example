@@ -1,4 +1,4 @@
-import { Color } from "@/utils/style";
+import { Color } from "../../utils/style";
 import { StyleSheet, TextInput, View } from "react-native";
 import type { InputProps } from "./types";
 

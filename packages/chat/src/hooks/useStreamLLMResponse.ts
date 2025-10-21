@@ -1,4 +1,4 @@
-import useChat from "@/hooks/useChat";
+import useChat from "../hooks/useChat";
 import { randomUUID } from "expo-crypto";
 import { useCallback, useEffect, useRef } from "react";
 import useAppState from "./useAppState";
@@ -6,7 +6,7 @@ import useLLM from "./useLLM";
 
 const useStreamLLMResponse = () => {
   const updateRef = useRef<string>("");
-  const timeoutRef = useRef<number>(null);
+  const timeoutRef = useRef<number | NodeJS.Timeout>(null);
   const finshedLoading = useRef<boolean>(false);
 
   const { setLoading, setStreaming } = useAppState();
