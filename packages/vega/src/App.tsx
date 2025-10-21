@@ -7,7 +7,7 @@
 import {BottomBar, ChatList, Color} from '@llm-chat/chat';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export const App = () => {
   return (

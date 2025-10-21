@@ -40,7 +40,7 @@ const useChat = () => {
   );
 
   const messages = useMemo(() => {
-    return atomValue.messages.filter((message) => message.content);
+    return atomValue.messages.filter((message) => message && message.content);
   }, [atomValue]);
 
   return { messages, pushChunksToLastMessage, pushMessage };

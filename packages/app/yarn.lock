@@ -1900,10 +1900,11 @@ __metadata:
 
 "@llm-chat/chat@file:../chat::locator=llm-chat-app%40workspace%3A.":
   version: 0.0.0
-  resolution: "@llm-chat/chat@file:../chat#../chat::hash=7a535a&locator=llm-chat-app%40workspace%3A."
+  resolution: "@llm-chat/chat@file:../chat#../chat::hash=9355aa&locator=llm-chat-app%40workspace%3A."
   dependencies:
     "@legendapp/list": ^2.0.13
     jotai: ^2.15.0
+    react-native-markdown-display: ^7.0.2
   peerDependencies:
     "@react-native-masked-view/masked-view": "*"
     expo: "*"
@@ -1912,9 +1913,10 @@ __metadata:
     react: "*"
     react-native: "*"
     react-native-reanimated: "*"
+    react-native-safe-area-context: "*"
     react-native-svg: "*"
     typescript: ^5.0.0
-  checksum: 3c10bca25e59646f1d0c67e5f3e4ccf9e5b8673e2449271310f30293ddd4c15ee6085ce1f4dd0e91734d144486564870938374a6e6d3ccaf34297e003e203ffd
+  checksum: 4491ae5684e834217513115a41857ee9e3eeecbb3f0e2ed87d560e7591e0787e5c41a0dc09a3939db4d9935baef42ec5f6ad3f11c81891ceb9d29432dd82b7a9
   languageName: node
   linkType: hard
 

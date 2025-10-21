@@ -1,6 +1,6 @@
-import useChat from "../hooks/useChat";
 import { randomUUID } from "expo-crypto";
 import { useCallback, useEffect, useRef } from "react";
+import useChat from "../hooks/useChat";
 import useAppState from "./useAppState";
 import useLLM from "./useLLM";
 
@@ -46,7 +46,9 @@ const useStreamLLMResponse = () => {
         content: prompt,
       });
 
-      const reader = await getResponseReader(prompt);
+      const reader = (await getResponseReader(prompt)) as ReadableStreamReader<
+        Uint8Array<ArrayBuffer>
+      >;
       if (!reader) {
         return;
       }
