@@ -1,11 +1,11 @@
-import useStreamLLMResponse from "../../hooks/useStreamLLMResponse";
 import { useCallback, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useAppState from "../../hooks/useAppState";
+import useStreamLLMResponse from "../../hooks/useStreamLLMResponse";
 import Button from "./Button";
 import Input from "./Input";
 import MistakesNotice from "./MistakesNotice";
-import useAppState from "../../hooks/useAppState";
 
 const BottomBar = () => {
   const [prompt, setPrompt] = useState<string>("");
@@ -19,10 +19,20 @@ const BottomBar = () => {
   }, [prompt, streamResponse]);
 
   return (
-    <View style={[styles.container, { paddingBottom: insets.bottom }]}>
+    <View
+      style={[
+        styles.container,
+        // @ts-ignore - 'kepler' doesn't have overlap with default platforms
+        { paddingBottom: Platform.OS !== "kepler" ? insets.bottom : 24 },
+      ]}
+    >
       <View style={styles.inputRow}>
         <Input disabled={streaming} onChangeText={setPrompt} value={prompt}>
-          <Button disabled={streaming} onPress={handlePress} style={styles.button} />
+          <Button
+            disabled={streaming}
+            onPress={handlePress}
+            style={styles.button}
+          />
         </Input>
       </View>
       <MistakesNotice />
@@ -40,11 +50,13 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 24,
     width: "100%",
+    alignItems: "center",
   },
   inputRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     gap: 12,
+    maxWidth: 1000,
   },
 });

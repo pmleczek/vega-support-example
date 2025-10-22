@@ -1,5 +1,5 @@
-import { Color } from "../../utils/style";
-import { StyleSheet, Text } from "react-native";
+import { Platform, StyleSheet, Text } from "react-native";
+import { Color, FontSize } from "../../utils/style";
 
 const MistakesNotice = () => (
   <Text style={styles.text}>
@@ -12,9 +12,10 @@ export default MistakesNotice;
 const styles = StyleSheet.create({
   text: {
     color: Color.foregroundSecondary,
-    fontSize: 12,
-    fontWeight: '500',
+    fontSize: FontSize.xs,
+    fontWeight: "500",
     textAlign: "center",
-    marginTop: 12,
+    // @ts-ignore - 'kepler' doesn't have overlap with default platforms
+    marginTop: Platform.OS === "kepler" ? 18 : 12,
   },
 });

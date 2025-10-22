@@ -2472,7 +2472,7 @@ __metadata:
 
 "@llm-chat/chat@file:../chat::locator=%40amazon-devices%2Fllmchatvega%40workspace%3A.":
   version: 0.0.0
-  resolution: "@llm-chat/chat@file:../chat#../chat::hash=c201ba&locator=%40amazon-devices%2Fllmchatvega%40workspace%3A."
+  resolution: "@llm-chat/chat@file:../chat#../chat::hash=18ab9c&locator=%40amazon-devices%2Fllmchatvega%40workspace%3A."
   dependencies:
     "@legendapp/list": ^2.0.13
     jotai: ^2.15.0
@@ -2488,7 +2488,7 @@ __metadata:
     react-native-safe-area-context: "*"
     react-native-svg: "*"
     typescript: ^5.0.0
-  checksum: b906571943d246f22c9fe55fe1784f4c764b0248776d4fdc9ab9360d31d9f2d72aa13f66f0c713c66c366c6489809739a86f3287f693eddb0e8e88afe0280b02
+  checksum: af2c125ca5add5999dcd56ae9704e2b605c6ead50abdc1edab6430fc372d2c87c247aa285850f699d6d419c3961213b6b4b3e0cbf24fd8e66275398d33f744af
   languageName: node
   linkType: hard
 

@@ -1,11 +1,11 @@
 import { Line, Polyline, Svg } from "react-native-svg";
 import type { IconProps } from "./types";
 
-const ArrowUpIcon = ({ color }: IconProps) => {
+const ArrowUpIcon = ({ color, size = 24 }: IconProps) => {
   return (
     <Svg
-      width="24"
-      height="24"
+      width={size}
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}

@@ -1,6 +1,5 @@
-import { Color } from "../../utils/style";
 import { useEffect } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet, TouchableOpacity } from "react-native";
 import Animated, {
   cancelAnimation,
   Easing,
@@ -11,8 +10,12 @@ import Animated, {
   withRepeat,
   withTiming,
 } from "react-native-reanimated";
+import { Color } from "../../utils/style";
 import { ArrowUpIcon, LoaderIcon } from "../icons";
 import type { ButtonProps } from "./types";
+
+// @ts-ignore - 'kepler' doesn't have overlap with default platforms
+const BUTTON_SIZE = Platform.OS === "kepler" ? 72 : 56;
 
 const Button = ({ disabled, onPress, style = {} }: ButtonProps) => {
   return (
@@ -32,7 +35,11 @@ const ArrowIcon = () => {
       entering={FadeIn.duration(300).delay(300)}
       exiting={FadeOut.duration(300)}
     >
-      <ArrowUpIcon color={Color.foregroundPrimary} />
+      <ArrowUpIcon
+        color={Color.foregroundPrimary}
+        // @ts-ignore - 'kepler' doesn't have overlap with default platforms
+        size={Platform.OS === "kepler" ? 32 : 24}
+      />
     </Animated.View>
   );
 };
@@ -75,8 +82,8 @@ const styles = StyleSheet.create({
     borderColor: Color.borderSecondary,
     borderWidth: 1,
     borderRadius: 9999,
-    height: 56,
-    width: 56,
+    height: BUTTON_SIZE,
+    width: BUTTON_SIZE,
   },
   disabled: {
     backgroundColor: Color.backgroundSecondary,
